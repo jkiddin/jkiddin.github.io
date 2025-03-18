@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>The Rusty Spitbucket</title>
+    <style>
+        body {
+            background: #f8f1e5;
+            font-family: 'Georgia', serif;
+            color: #3c2f2f;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-family: 'Copperplate', 'Georgia', serif;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        #orderDetails {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 18px;
+            background-color: #ffffff;
+            border: 2px solid #6b4521;
+            box-shadow: 0 0 10px rgba(161, 78, 23, 0.35);
+        }
+
+        #orderDetails p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        #greeting {
+            font-size: 1.75em;
+            margin-bottom: 18px;
+            text-align: center;
+            color: #9c5e25;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #412f28;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>The Rusty Spitbucket</h1>
+    <hr />
+    <h1 id="greeting"></h1>
+    <div id="orderDetails"></div>
+
+    <script>
+        window.onload = function () {
+            alert("Welcome to our Saloon!");
+
+            let name = "Partner"
+            let item = "Good Ol' Steak n Egg"
+
+            const enteredName = prompt("Enter your name, partner:");
+            if (enteredName) {
+                name = enteredName;
+            }
+
+            const enteredItem = prompt("Alrighty, and what'd you like to order?:");
+            if (enteredItem) {
+                item = enteredItem;
+            }
+
+            let quantity = parseInt(prompt("And how many? (1-99):"), 10);
+
+            if (isNaN(quantity) || quantity < 1 || quantity > 99) {
+                alert("Nope, that ain't sound right. You get one, partner.");
+                quantity = 1;
+            }
+
+            const currentHour = new Date().getHours();
+            let timeGreeting = "Good Evening";
+            if (currentHour >= 4 && currentHour < 12) {
+                timeGreeting = "Good Morning";
+            } else if (currentHour >= 12 && currentHour < 17) {
+                timeGreeting = "Good Afternoon";
+            }
+
+            const today = new Date();
+            const arrivalDate = new Date(today.setDate(today.getDate() + 7));
+            const arrivalDateString = arrivalDate.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            // i have not been able to get these two tabs to line up and it's driving me nuts
+            document.getElementById("greeting").innerHTML =
+                `
+                ${timeGreeting} ${name}, <br>Thanks for supporting The Rusty Spitbucket!
+                `;
+
+            document.getElementById("orderDetails").innerHTML =
+                `
+                <p>You ordered ${quantity} ${item}(s)</p>
+                <p>Your order will arrive by ${arrivalDateString} on horseback.</p>
+                `;
+        };
+    </script>
+
+    <footer>
+        &reg; The Rusty Spitbucket Saloon, LLC
+        <br />
+        <a href="https://jkiddin.github.io/">Github.io Home Page</a>
+        <br />
+    </footer>
+    
+</body>
+</html>
