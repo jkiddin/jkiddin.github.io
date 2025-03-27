@@ -1,0 +1,247 @@
+<!-- josh k -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Rock 2.0</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    body {
+      background: linear-gradient(to right, #ffe6e6, #ffe6e6);
+      font-family: "Comic Sans MS", "Comic Sans", cursive;
+    }
+
+    .card {
+      background: rgba(248, 241, 230, 0.7);
+      border: 3px solid #6b4e3d;
+      border-radius: 30px;
+      backdrop-filter: blur(5px);
+    }
+
+    .btn-rock {
+      background: #d46b4e;
+      color: white;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      border: 2px solid #6b4e3d;
+      border-radius: 80px;
+    }
+
+    .btn-rock:hover {
+      background: #6b4e3d;
+      color: #d46b4e;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-control {
+      border: 2px solid #6b4e3d;
+    }
+
+    .petRock {
+      color: #6b4e3d;
+      text-shadow: 1px 1px #ffd700;
+      position: relative;
+      display: inline-block;
+    }
+
+    .passPop {
+      background: #ffd700;
+      color: #6b4e3d;
+      border: 1px solid #6b4e3d;
+      border-radius: 10px;
+      padding: 0.25rem 0.5rem;
+      margin: 0.25rem;
+      font-size: 0.8em;
+      display: inline-block;
+    }
+
+    .ruhroh {
+      height: 8px;
+      background: repeating-linear-gradient(45deg, #6b4e3d, #6b4e3d 10px, #ffd700 10px, #ffd700 20px);
+      margin: 1rem 0;
+    }
+
+    .monocle-switch .form-check-input {
+      width: 3em;
+      height: 1.5em;
+      margin-right: 1em;
+    }
+
+    .form-check-input:checked {
+      background-color: #5a7d5a;
+      border-color: #5a7d5a;
+    }
+
+    ::placeholder {
+      color: #a89b8c;
+      font-style: italic;
+    }
+
+    .fStyle {
+      padding: 1rem;
+      border-radius: 1rem;
+      margin-bottom: 1.5rem;
+      background: rgba(212, 107, 78, 0.3);
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+  <div class="container py-5">
+    <header class="text-center mb-5">
+      <div class="ruhroh w-50 mx-auto mb-3"></div>
+      <h1 class="display-4 petRock mb-3">Register Your Pet Rock 2.0!</h1>
+      <div class="ruhroh w-50 mx-auto mt-3"></div>
+      <p class="lead mt-4" style="color: #d46b4e;">We no longer accept alien artifacts.</p>
+    </header>
+
+    <div id="rockReg" class="d-none mb-4">
+      <div class="card shadow-lg p-4">
+        <h2 class="h3 mb-4 text-center petRock">Geological Registration Manifest</h2>
+        <div id="regStat"></div>
+        <div id="rockinfo" class="mt-3"></div>
+      </div>
+    </div>
+
+    <form id="leForm" class="card shadow-lg p-4">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="fStyle">
+            <label class="form-label fw-bold">Rock's Official Title</label>
+            <input type="text" class="form-control " id="firstName" placeholder="ex. Flint Michigan the III" required>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="fStyle">
+            <label class="form-label fw-bold">Your Human Designation</label>
+            <input type="text" class="form-control " id="lastName" placeholder="Meatbag responsible for rock mischief"
+              required>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="fStyle">
+            <label class="form-label fw-bold">Virtual Volcanic Address</label>
+            <input type="email" class="form-control " id="email" placeholder="igneous.volcano@hotmail.com" required>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="fStyle position-relative">
+            <label class="form-label fw-bold">Secret Authentication Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Requires special seismic symbols :3"
+              required>
+            <div class="position-absolute top-0 end-0 mt-1 me-2">
+              <span class="passPop">! and ? required</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="fStyle">
+            <label class="form-label fw-bold">Geological Formation Date</label>
+            <input type="date" class="form-control" id="doc" max="2023-12-31" required>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="fStyle">
+            <label class="form-label fw-bold">Mineral Personality Matrix</label>
+            <select class="form-select form-control" id="minPerson" required>
+              <option value="">Choose...</option>
+              <option>Sedi-mental</option>
+              <option>Igneous & Fabulous</option>
+              <option>Existent</option>
+              <option>Punk Rock</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="fStyle">
+            <div class="form-check form-switch monocle-switch">
+              <input type="checkbox" class="form-check-input mt-0" id="monocle" role="switch">
+              <label class="form-check-label fw-bold">Premium Monocle Package (+$299)</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 text-center mt-4">
+          <button type="submit" class="btn btn-rock  px-5 py-3 fw-bold">Register that rock!</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('leForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const form = this;
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      const password = document.getElementById('password').value;
+      const errors = [];
+      if (!password.includes('!') || !password.includes('?')) {
+        errors.push("Password must contain both ! AND ?");
+      }
+
+      const rockRegD = document.getElementById('rockReg');
+      const regStatD = document.getElementById('regStat');
+      const rockinfoD = document.getElementById('rockinfo');
+
+      rockRegD.classList.remove('d-none');
+      regStatD.innerHTML = '';
+      rockinfoD.innerHTML = '';
+
+      if (errors.length > 0) {
+        regStatD.innerHTML = `
+          <div class="alert alert-danger">
+            <h4 class="alert-heading">Registration Crumbled!</h4>
+            <hr>
+            ${errors.join('<br>')}
+          </div>`;
+        rockRegD.scrollIntoView({behavior: 'smooth'});
+      } else {
+        const monocleChecked = document.getElementById('monocle').checked;
+        const personality = document.getElementById('minPerson').value;
+        const userObj = {
+          rockName: document.getElementById('firstName').value,
+          ownerName: document.getElementById('lastName').value,
+          email: document.getElementById('email').value,
+          doc: document.getElementById('doc').value,
+          hasMonocle: monocleChecked,
+          per: personality
+        };
+
+        regStatD.innerHTML = `
+          <div class="alert alert-success">
+            <h4 class="alert-heading">Rock-star Status Achieved!</h4>
+            <hr>
+            <p class="mb-0">Your pet rock certification${monocleChecked ? ' (+ monocle)' : ''} will arrive via carrier pigeon in 3-5 business eons</p>
+          </div>`;
+
+        rockinfoD.innerHTML = `
+          <h5 class="petRock mb-3">Crystalline Registration Details:</h5>
+          <ul class="list-unstyled">
+            <li><strong>Rock Name:</strong> ${userObj.rockName}</li>
+            <li><strong>Owner:</strong> ${userObj.ownerName}</li>
+            <li><strong>Contact:</strong> ${userObj.email}</li>
+            <li><strong>Formation Date:</strong> ${userObj.doc}</li>
+            <li><strong>Mineral Personality Matrix:</strong> ${userObj.per}</li>
+            <li><strong>Monocle Status:</strong> ${userObj.hasMonocle ? 'Deliciously Elegant! (Equipped)' : 'None'}</li>
+          </ul>`;
+      }
+      rockRegD.scrollIntoView({behavior: 'smooth'});
+    });
+  </script>
+</body>
+
+</html>
