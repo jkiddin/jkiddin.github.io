@@ -1,0 +1,502 @@
+/* okay i know how stupid it seems to have a css file so long */
+/* but it's for both sites */
+/* and i really wanted to make it look nice for the final project */
+/* + having a "dark mode" complicates things lol thats why there are so many vars */
+/* did i do too much? maybe. */
+/* am i writing this on may 8th at 1:36 am trying to fix one stupid little thing? yeah. */
+/* idk im happy with it */
+
+:root {
+  --bgBody: #f8f9fa;
+  --bgCard: #ffffff;
+  --txtMain: #212529;
+  --txtMuted: #6c757d;
+  --lineMuted: #e2e8f0;
+  --glowMain: rgba(209, 16, 16, 0.1);
+  --glowHover: rgba(209, 16, 16, 0.3);
+  --bgNav: rgba(255, 255, 255, 0.95);
+  --bgInput: #ffffff;
+  --txtInput: #e2e8f0;
+  --clrMain: #d11010;
+  --rgbMain: 209, 16, 16;
+  --gradMain: linear-gradient(to right, #d11010, #ff3a3a);
+  --gradSecondary: linear-gradient(135deg, #d11010 0%, #8a0303 100%);
+  --glowNav: 0 2px 4px rgba(209, 16, 16, 0.1);
+  --bgFoot: #ffffff;
+  --bgFeatIcon: rgba(209, 16, 16, 0.1);
+  --bgSearch: #f8f9fa;
+}
+
+[data-theme="dark"] {
+  --bgBody: #121212;
+  --bgCard: #1e1e1e;
+  --txtMain: #e9ecef;
+  /* i love bootstrap i love bootstrap i love bootstrap i love bootstrap */
+  --txtMuted: #adb5bd !important;
+  --lineMuted: #333333;
+  --glowMain: rgba(209, 16, 16, 0.3);
+  --glowHover: rgba(209, 16, 16, 0.5);
+  --bgNav: rgba(30, 30, 30, 0.95);
+  --bgInput: #2d3748;
+  --txtInput: #4a5568;
+  --clrMain: #ff0000;
+  --rgbMain: 255, 0, 0;
+  --glowNav: 0 2px 8px rgba(255, 0, 0, 0.3);
+  --bgFoot: #1e1e1e;
+  --bgFeatIcon: rgba(255, 0, 0, 0.2);
+  --bgSearch: #1a1a1a;
+}
+
+body {
+  background-color: var(--bgBody);
+  color: var(--txtMain);
+  font-family: 'Rajdhani', 'Segoe UI', sans-serif-condensed, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    /* i swear these little lines are burned into my retinas at this point */
+    to bottom,
+    transparent 0px,
+    transparent 1px,
+    rgba(255, 0, 34, 0.1) 2px,
+    rgba(255, 0, 34, 0.1) 3px
+  );
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
+}
+
+[data-theme="dark"] body::before {
+  opacity: 0.8;
+}
+
+.jumbotron {
+  background: var(--gradSecondary);
+  position: relative;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  /* thought the cut in the jumbotron was cool? idk */
+  clip-path: polygon(0 0, 100% 0, 100% 87%, 0 100%);
+  border-bottom: 2px solid var(--clrMain);
+}
+
+.jumbotron::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(0deg, transparent 50%, rgba(255, 208, 0, 0.1) 50%);
+  background-size: 4px 4px;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.jumbotron-content {
+  position: relative;
+  z-index: 1;
+}
+
+.prettyNav {
+  /* backdrop filter is so cool how did i just learn about it */
+  backdrop-filter: blur(10px);
+  background-color: var(--bgNav) !important;
+  box-shadow: var(--glowNav);
+  border-bottom: 1px solid rgba(209, 16, 16, 0.2);
+}
+
+.navbar-brand, .nav-link {
+  color: var(--txtMain) !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.nav-link {
+  position: relative;
+  padding: 0.5rem 1rem;
+  margin: 0 0.25rem;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0.2rem;
+  right: 0.2rem;
+  bottom: 0.3rem;
+  height: 2px;
+  background: var(--gradMain);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.nav-link.active::after, .nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+[data-theme="dark"] .navbar-toggler {
+  border-color: var(--txtMain);
+  background-color: var(--txtMain);
+}
+
+h1, h3, h5 {
+  font-weight: 700;
+  color: var(--txtMain);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+h1 {
+  position: relative;
+  padding-bottom: 12px;
+  margin-bottom: 25px;
+}
+
+.topartContainer {
+  background: var(--bgCard);
+  border-radius: 4px;
+  padding: 30px;
+  box-shadow: 0 0 20px var(--glowMain);
+  margin: 30px 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--lineMuted);
+  position: relative;
+}
+
+.topartContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradMain);
+}
+
+.topartContainer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 30px var(--glowHover);
+}
+
+.card {
+  border: none;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 0 15px var(--glowMain);
+  background-color: var(--bgCard);
+  height: 100%;
+  position: relative;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--gradMain);
+  z-index: 1;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px var(--glowHover);
+}
+
+.card-img-top {
+  height: 25vh;
+  object-fit: cover;
+  transition: all 0.5s ease;
+  filter: grayscale(40%) contrast(110%);
+  border-bottom: 1px solid var(--lineMuted);
+}
+
+.card:hover .card-img-top {
+  transform: scale(1.05);
+  filter: grayscale(0%) contrast(100%);
+}
+
+.card-body {
+  padding: 1.5em;
+  position: relative;
+}
+
+.home-card {
+  padding: 1rem 1rem 0rem 1rem;
+}
+
+.card-title {
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--txtMain);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card-footer {
+  background-color: var(--bgCard) !important;
+  border-color: var(--lineMuted) !important;
+  padding: 1rem 1.5rem;
+}
+
+.trendingthing {
+  background: var(--bgFeatIcon);
+  color: var(--clrMain);
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-weight: 500;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 1px solid var(--clrMain);
+}
+
+.icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 4px;
+  background-color: var(--bgFeatIcon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: var(--clrMain);
+  font-size: 1.8rem;
+  transition: transform 0.3s ease;
+  border: 1px solid var(--clrMain);
+}
+
+#searchForm .form-control {
+  padding: 1rem 1.5rem;
+  box-shadow: none;
+  border: 1px solid var(--txtInput);
+  background-color: var(--bgInput);
+  color: var(--txtMain);
+  font-size: 1.1rem;
+}
+
+#searchForm .form-control:focus {
+  border-color: var(--clrMain);
+  box-shadow: 0 0 0 0.25rem rgba(var(--rgbMain), 0.25);
+}
+
+#searchForm .btn-primary {
+  border-radius: 0 4px 4px 0;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.bandWagonArtists {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 1rem;
+}
+
+.bandWagonArtists .badge {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 5px;
+}
+
+.bandWagonArtists .badge:hover {
+  border-color: var(--clrMain);
+  color: var(--clrMain) !important;
+}
+
+.searchDiv {
+  background-color: var(--bgSearch);
+  padding: 5rem 0 3rem;
+  margin-bottom: 2rem;
+  position: relative;
+  border-bottom: 3px solid var(--clrMain);
+}
+
+footer {
+  background-color: var(--bgFoot);
+  border-top: 1px solid var(--clrMain);
+  margin-top: auto;
+  position: relative;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradMain);
+}
+
+.footLinks {
+  color: var(--txtMuted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.footLinks:hover {
+  color: var(--clrMain);
+}
+
+.btn {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(var(--rgbMain), 0.3);
+}
+
+.btn-primary {
+  background: var(--clrMain);
+  border-color: var(--clrMain);
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background: var(--clrMain);
+  border-color: var(--clrMain);
+}
+
+.btn-outline-primary {
+  color: var(--clrMain);
+  border-color: var(--clrMain);
+}
+
+.btn-outline-primary:hover {
+  background-color: rgba(var(--rgbMain), 0.1);
+  color: var(--clrMain);
+  border-color: var(--clrMain);
+}
+
+.progress {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 0;
+  height: 6px;
+}
+
+.progress-bar {
+  background: var(--gradMain);
+}
+
+.alert-danger {
+  background-color: rgba(220, 53, 69, 0.1);
+  color: #ff6b6b;
+  border-color: rgba(220, 53, 69, 0.3);
+  border-radius: 4px;
+  border-left: 3px solid #ff0000;
+}
+
+.list-group-item {
+  background-color: var(--bgCard);
+  border-color: var(--lineMuted);
+  color: var(--txtMain);
+  transition: background-color 0.3s ease;
+}
+
+.list-group-item:hover {
+  background-color: rgba(var(--rgbMain), 0.1);
+}
+
+.ldBtn {
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+  margin-left: 10px;
+}
+
+.bi {
+  color: #d11010;
+}
+
+.ldBtn:hover {
+  background-color: rgba(var(--rgbMain), 0.1);
+}
+
+.ldBtn .bi {
+  font-size: 1.3rem;
+  transition: transform 0.3s ease;
+}
+
+.ldBtn:hover .bi {
+  color: var(--clrMain);
+}
+
+.ranks {
+  padding: 0.5rem 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover .ranks {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.input-group-text {
+  background-color: var(--bgInput);
+  border-color: var(--txtInput);
+  color: var(--clrMain);
+}
+
+p {
+  color: var(--txtMain);
+}
+
+p.text-muted, .text-muted {
+  color: var(--txtMuted) !important;
+}
+
+[data-theme="dark"] .form-control {
+  color: var(--txtMain) !important;
+  background-color: var(--bgInput);
+  border-color: var(--txtInput);
+}
+
+[data-theme="dark"] .form-control::placeholder {
+  color: var(--txtMuted) !important;
+  opacity: 0.85;  
+}
+
+.spinner-grow {
+  background-color: var(--clrMain) !important;
+}
